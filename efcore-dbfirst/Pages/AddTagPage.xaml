@@ -8,13 +8,17 @@
       xmlns:validator="clr-namespace:efcore_dbfirst.Validators"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddTagPage">
+      Title="Добавление тега">
 
     <Page.Resources>
         <validator:BrandCategoryTagValidator x:Key="brandCategoryTagValidator"/>
     </Page.Resources>
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="240">
+            <Label Content="Добавление тега"
+                   HorizontalContentAlignment="Center"
+                   FontSize="24" FontWeight="SemiBold"
+                   Margin="16"/>
             <Label Content="Название тега"/>
             <TextBox x:Name="Name" Validation.ErrorTemplate="{x:Null}" materialDesign:HintAssist.Hint="Введите название тега">
                 <TextBox.Text>

@@ -9,7 +9,7 @@
       mc:Ignorable="d" 
       DataContext="{Binding RelativeSource={RelativeSource Self}}"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddPage" Loaded="LoadList">
+      Title="Добавление" Loaded="LoadList">
 
     <Page.Resources>
         <converter:TagConverter x:Key="tagConverter"/>

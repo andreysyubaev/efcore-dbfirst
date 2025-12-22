@@ -8,13 +8,17 @@
       xmlns:validator="clr-namespace:efcore_dbfirst.Validators"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddBrandPage">
+      Title="Добавление бренда">
 
     <Page.Resources>
         <validator:BrandCategoryTagValidator x:Key="brandCategoryTagValidator"/>
     </Page.Resources>
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="240">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="320">
+            <Label Content="Добавление бренда"
+                   HorizontalContentAlignment="Center"
+                   FontSize="24" FontWeight="SemiBold"
+                   Margin="16"/>
             <Label Content="Название бренда"/>
             <TextBox x:Name="Name" Validation.ErrorTemplate="{x:Null}" materialDesign:HintAssist.Hint="Введите название бренда">
                 <TextBox.Text>

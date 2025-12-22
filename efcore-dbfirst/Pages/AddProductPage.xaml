@@ -8,7 +8,7 @@
       xmlns:validator="clr-namespace:efcore_dbfirst.Validators"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddProductPage" Loaded="LoadList">
+      Title="Добавление товара" Loaded="LoadList">
 
     <Page.Resources>
         <validator:NameValidator x:Key="nameValidator"/>
@@ -28,7 +28,11 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240">
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="320">
+                <Label Content="Добавление товара"
+                       HorizontalContentAlignment="Center"
+                       FontSize="24" FontWeight="SemiBold"
+                       Margin="16"/>
                 <StackPanel>
                     <Label Content="Название"/>
                     <TextBox x:Name="Name" materialDesign:HintAssist.Hint="Введите название" Validation.ErrorTemplate="{x:Null}">

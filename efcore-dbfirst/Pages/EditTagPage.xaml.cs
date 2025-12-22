@@ -35,6 +35,10 @@ namespace efcore_dbfirst.Pages
                 IsEdit = true;
             }
             DataContext = _tag;
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Title = "Редактирование тега";
+            }
         }
 
         private void Edit(object sender, RoutedEventArgs e)

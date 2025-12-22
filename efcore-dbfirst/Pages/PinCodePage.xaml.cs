@@ -25,6 +25,10 @@ namespace efcore_dbfirst.Pages
         public PinCodePage()
         {
             InitializeComponent();
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Title = "ПИН-код";
+            }
         }
 
         private void PinCode_PasswordChanged(object sender, RoutedEventArgs e)

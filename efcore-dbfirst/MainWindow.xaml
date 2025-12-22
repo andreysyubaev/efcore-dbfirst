@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:efcore_dbfirst"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="MainWindow" x:Name="mwTitle"
         MinHeight="800" MinWidth="800"
         Height="800" Width="1000"
         WindowStartupLocation="CenterScreen">

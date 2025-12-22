@@ -41,6 +41,10 @@ namespace efcore_dbfirst.Pages
         {
             InitializeComponent();
             DataContext = this;
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Title = "Добавление/изменение";
+            }
         }
 
         private void LoadList(object sender, RoutedEventArgs e)

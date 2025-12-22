@@ -9,9 +9,16 @@
       Title="StartPage">
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <WrapPanel>
-            <Button Click="UserLogin" Content="Войти как посетитель" Margin="4"/>
-            <Button Click="ManagerLogin" Content="Войти как менеджер" Margin="4"/>
-        </WrapPanel>
+        <StackPanel>
+            <Label Content="Выберите роль"
+                   HorizontalContentAlignment="Center"
+                   FontSize="32" FontWeight="SemiBold"
+                   Margin="16"/>
+            <WrapPanel>
+                <Button Click="UserLogin" Content="Войти как посетитель" Margin="4"/>
+                <Button Click="ManagerLogin" Content="Войти как менеджер" Margin="4"/>
+            </WrapPanel>
+        </StackPanel>
+       
     </Grid>
 </Page>

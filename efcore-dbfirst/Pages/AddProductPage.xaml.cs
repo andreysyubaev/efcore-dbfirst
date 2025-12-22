@@ -54,6 +54,10 @@ namespace efcore_dbfirst.Pages
             IsEdit = product != null;
 
             DataContext = this;
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Title = "Добавление товара";
+            }
         }
 
         private void LoadList(object sender, RoutedEventArgs e)

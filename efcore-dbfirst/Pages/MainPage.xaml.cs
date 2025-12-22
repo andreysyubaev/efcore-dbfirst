@@ -52,6 +52,10 @@ namespace efcore_dbfirst.Pages
                 managerAddButton.Visibility = Visibility.Collapsed;
             }
             DataContext = this;
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Title = "Товары электроники";
+            }
         }
 
         public bool FilterForms(object obj)

@@ -35,6 +35,10 @@ namespace efcore_dbfirst.Pages
                 IsEdit = true;
             }
             DataContext = _tag;
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Title = "Добавление тега";
+            }
         }
 
         private void AddTag(object sender, RoutedEventArgs e)

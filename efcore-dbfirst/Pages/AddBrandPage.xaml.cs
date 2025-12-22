@@ -35,6 +35,10 @@ namespace efcore_dbfirst.Pages
                 IsEdit = true;
             }
             DataContext = _brand;
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Title = "Добавление бренда";
+            }
         }
 
         private void AddBrand(object sender, RoutedEventArgs e)

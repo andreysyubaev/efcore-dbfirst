@@ -24,6 +24,10 @@ namespace efcore_dbfirst.Pages
         public StartPage()
         {
             InitializeComponent();
+            if (Application.Current.MainWindow != null)
+            {
+                Application.Current.MainWindow.Title = "Выбор роли";
+            }
         }
 
         private void UserLogin(object sender, RoutedEventArgs e)

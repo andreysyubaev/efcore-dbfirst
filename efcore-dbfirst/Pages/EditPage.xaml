@@ -7,7 +7,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EditPage" Loaded="LoadList">
+      Title="Изменение товара" Loaded="LoadList">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -21,7 +21,11 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0"
                         HorizontalAlignment="Center" VerticalAlignment="Center" 
-                        Width="240">
+                        Width="320">
+                <Label Content="Изменение товара"
+                       HorizontalContentAlignment="Center"
+                       FontSize="24" FontWeight="SemiBold"
+                       Margin="16"/>
                 <StackPanel>
                     <Label Content="Название"/>
                     <TextBox Text="{Binding Product.Name}" materialDesign:HintAssist.Hint="Введите название"/>
