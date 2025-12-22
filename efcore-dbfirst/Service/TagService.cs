@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace efcore_dbfirst.Service
 {
@@ -31,6 +32,17 @@ namespace efcore_dbfirst.Service
 
         public void Add(Tag tag)
         {
+            var name = tag.Name?.Trim();
+
+            bool exists = _db.Tags
+                .Any(c => c.Name.ToLower() == name.ToLower());
+
+            if (exists)
+            {
+                MessageBox.Show("Тег с таким названием уже существует");
+                return;
+            }
+
             var _tag = new Tag
             {
                 Name = tag.Name,

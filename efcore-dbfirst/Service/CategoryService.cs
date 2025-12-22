@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace efcore_dbfirst.Service
 {
@@ -32,6 +33,17 @@ namespace efcore_dbfirst.Service
 
         public void Add(Category category)
         {
+            var name = category.Name?.Trim();
+
+            bool exists = _db.Categories
+                .Any(c => c.Name.ToLower() == name.ToLower());
+
+            if (exists)
+            {
+                MessageBox.Show("Категория с таким названием уже существует");
+                return;
+            }
+
             var _сategory = new Category
             {
                 Name = category.Name,
