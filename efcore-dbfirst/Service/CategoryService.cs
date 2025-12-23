@@ -56,10 +56,26 @@ namespace efcore_dbfirst.Service
 
         public void Remove(Category category)
         {
-            _db.Remove<Category>(category);
-            if (Commit() > 0)
+            //_db.Remove<Category>(category);
+            //if (Commit() > 0)   
+            //    if (Categories.Contains(category))
+            //        Categories.Remove(category);
+
+
+            bool hasProducts = _db.Products.Any(p => p.CategoryId == category.Id);
+
+            if (hasProducts)
+            {
+                MessageBox.Show("Нельзя удалить категорию, в которой есть товары");
+            }
+            else
+            {
+                _db.Categories.Remove(category);
+                Commit();
+
                 if (Categories.Contains(category))
                     Categories.Remove(category);
+            }
         }
     }
 }

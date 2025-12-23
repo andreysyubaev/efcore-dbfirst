@@ -100,7 +100,7 @@
                 <DataTemplate>
                     <Border
                         BorderThickness="2"
-                        CornerRadius="6"
+                        CornerRadius="2"
                         BorderBrush="{Binding Stock, Converter={StaticResource borderConverter}}">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -128,7 +128,6 @@
                             </TextBlock>
 
                             <TextBlock Grid.Row="2" Grid.Column="0">
-                                <Run Text="Категория: "/>
                                 <Run Text="{Binding Category.Name}"/>
                             </TextBlock>
 

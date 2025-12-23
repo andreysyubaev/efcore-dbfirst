@@ -43,11 +43,18 @@ namespace efcore_dbfirst.Pages
 
         private void AddTag(object sender, RoutedEventArgs e)
         {
-            if (IsEdit)
-                service.Commit();
+            if (string.IsNullOrWhiteSpace(Name.Text))
+            {
+                MessageBox.Show("Введите название бренда");
+            }
             else
-                service.Add(_tag);
-            Back(sender, e);
+            {
+                if (IsEdit)
+                    service.Commit();
+                else
+                    service.Add(_tag);
+                Back(sender, e);
+            }
         }
 
         private void Back(object sender, RoutedEventArgs e)

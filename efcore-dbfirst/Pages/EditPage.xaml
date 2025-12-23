@@ -5,10 +5,19 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:efcore_dbfirst.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:validator="clr-namespace:efcore_dbfirst.Validators"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Изменение товара" Loaded="LoadList">
-
+    <Page.Resources>
+        <validator:NameValidator x:Key="nameValidator"/>
+        <validator:DescriptionValidator x:Key="descriptionValidator"/>
+        <validator:PriceValidator x:Key="priceValidator"/>
+        <validator:StockValidator x:Key="stockValidator"/>
+        <validator:RatingValidator x:Key="ratingValidator"/>
+        <validator:DateValidator x:Key="dateValidator"/>
+        <validator:ComboBoxValidator x:Key="comboBoxValidator"/>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -28,41 +37,137 @@
                        Margin="16"/>
                 <StackPanel>
                     <Label Content="Название"/>
-                    <TextBox Text="{Binding Product.Name}" materialDesign:HintAssist.Hint="Введите название"/>
+                    <TextBox x:Name="Name" materialDesign:HintAssist.Hint="Введите название" Validation.ErrorTemplate="{x:Null}">
+                        <TextBox.Text>
+                            <Binding Path="Product.Name"
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validator:NameValidator/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <ItemsControl ItemsSource="{Binding ElementName=Name, Path=(Validation.Errors)}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding ErrorContent}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Описание"/>
-                    <TextBox Text="{Binding Product.Description}" materialDesign:HintAssist.Hint="Введите описание"/>
+                    <TextBox x:Name="Description" materialDesign:HintAssist.Hint="Введите описание" Validation.ErrorTemplate="{x:Null}">
+                        <TextBox.Text>
+                            <Binding Path="Product.Description"
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validator:DescriptionValidator/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <ItemsControl ItemsSource="{Binding ElementName=Description, Path=(Validation.Errors)}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding ErrorContent}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Цена"/>
-                    <TextBox Text="{Binding Product.Price}" materialDesign:HintAssist.Hint="Введите цену"/>
+                    <TextBox x:Name="Price" materialDesign:HintAssist.Hint="Введите цену" Validation.ErrorTemplate="{x:Null}">
+                        <TextBox.Text>
+                            <Binding Path="Product.Price"
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validator:PriceValidator/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <ItemsControl ItemsSource="{Binding ElementName=Price, Path=(Validation.Errors)}" Validation.ErrorTemplate="{x:Null}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding ErrorContent}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Количество"/>
-                    <TextBox Text="{Binding Product.Stock}" materialDesign:HintAssist.Hint="Введите количество"/>
+                    <TextBox x:Name="Stock" materialDesign:HintAssist.Hint="Введите количество" Validation.ErrorTemplate="{x:Null}">
+                        <TextBox.Text>
+                            <Binding Path="Product.Stock"
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validator:StockValidator/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <ItemsControl ItemsSource="{Binding ElementName=Stock, Path=(Validation.Errors)}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding ErrorContent}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Рейтинг"/>
-                    <TextBox Text="{Binding Product.Rating}" materialDesign:HintAssist.Hint="Введите рейтинг"/>
+                    <TextBox x:Name="Rating" materialDesign:HintAssist.Hint="Введите рейтинг" Validation.ErrorTemplate="{x:Null}">
+                        <TextBox.Text>
+                            <Binding Path="Product.Rating"
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validator:RatingValidator/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <ItemsControl ItemsSource="{Binding ElementName=Rating, Path=(Validation.Errors)}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding ErrorContent}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Дата создания"/>
-                    <DatePicker SelectedDate="{Binding Product.CreatedAt}"/>
+                    <DatePicker x:Name="CreatedAt" Validation.ErrorTemplate="{x:Null}">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="Product.CreatedAt"
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validator:DateValidator/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                    <ItemsControl ItemsSource="{Binding ElementName=CreatedAt, Path=(Validation.Errors)}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding ErrorContent}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Категория"/>
                     <ComboBox ItemsSource="{Binding Categories}"
-                  DisplayMemberPath="Name"
-                  SelectedValuePath="Id"
-                  SelectedValue="{Binding Product.CategoryId}" />
+                              DisplayMemberPath="Name"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Product.CategoryId}" />
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Бренд"/>
                     <ComboBox ItemsSource="{Binding Brands}"
-                  DisplayMemberPath="Name"
-                  SelectedValuePath="Id"
-                  SelectedValue="{Binding Product.BrandId}" />
+                              DisplayMemberPath="Name"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Product.BrandId}" />
                 </StackPanel>
                 <Button Click="Edit" Content="Изменить" Margin="0,8"/>
                 <Button Click="Delete" Content="Удалить" Margin="0,8"/>

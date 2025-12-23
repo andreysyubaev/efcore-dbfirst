@@ -99,10 +99,35 @@ namespace efcore_dbfirst.Pages
 
         private void Edit(object sender, RoutedEventArgs e)
         {
-            service.Commit();
-            MessageBox.Show("Изменения сохранены", "Готово",
-                MessageBoxButton.OK, MessageBoxImage.Information);
-            Back(sender, e);
+            if (string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Description.Text) || string.IsNullOrEmpty(Price.Text)
+                || string.IsNullOrEmpty(Stock.Text) || string.IsNullOrEmpty(Rating.Text) || string.IsNullOrEmpty(CreatedAt.Text))
+            {
+                MessageBox.Show("Заполните все поля", "Внимание",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else if (Product.CategoryId == 0)
+            {
+                MessageBox.Show(
+                    "Выберите категорию",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+            }
+            else if (Product.BrandId == 0)
+            {
+                MessageBox.Show(
+                    "Выберите бренд",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+            }
+            else
+            {
+                service.Commit();
+                MessageBox.Show("Изменения сохранены", "Готово",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                Back(sender, e);
+            }
         }
 
         private void Delete(object sender, RoutedEventArgs e)

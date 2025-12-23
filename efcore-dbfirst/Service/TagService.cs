@@ -55,10 +55,18 @@ namespace efcore_dbfirst.Service
 
         public void Remove(Tag tag)
         {
-            _db.Remove<Tag>(tag);
-            if (Commit() > 0)
-                if (Tags.Contains(tag))
-                    Tags.Remove(tag);
+            var productTags = _db.Set<Dictionary<string, object>>("ProductTag")
+                .Where(pt => (int)pt["TagId"] == tag.Id)
+                .ToList();
+
+            _db.RemoveRange(productTags);
+
+            _db.Tags.Remove(tag);
+
+            Commit();
+
+            if (Tags.Contains(tag))
+                Tags.Remove(tag);
         }
     }
 }

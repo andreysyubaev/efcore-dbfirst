@@ -17,14 +17,14 @@ namespace efcore_dbfirst.Validators
             if (input == string.Empty)
                 return new ValidationResult(false, "Ввод поля обязателен");
 
-            if (Convert.ToDecimal(input) < 0)
-                return new ValidationResult(false, "Цена не может быть отрицательна");
-
             foreach (char c in input)
             {
                 if (!char.IsDigit(c) && c != '.' && c != ',')
                     return new ValidationResult(false, "Введите число!");
             }
+
+            if (Convert.ToDecimal(input) < 0)
+                return new ValidationResult(false, "Цена не может быть отрицательна");
 
             return ValidationResult.ValidResult;
         }

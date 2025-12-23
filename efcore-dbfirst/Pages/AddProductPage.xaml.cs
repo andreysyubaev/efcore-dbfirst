@@ -90,22 +90,33 @@ namespace efcore_dbfirst.Pages
         private void AddProduct(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Description.Text) || string.IsNullOrEmpty(Price.Text)
-                || string.IsNullOrEmpty(Stock.Text))
+                || string.IsNullOrEmpty(Stock.Text) || string.IsNullOrEmpty(Rating.Text) || string.IsNullOrEmpty(CreatedAt.Text))
             {
                 MessageBox.Show("Заполните все поля", "Внимание",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else if (Product.CategoryId == 0)
+            {
+                MessageBox.Show(
+                    "Выберите категорию",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+            }
+            else if (Product.BrandId == 0)
+            {
+                MessageBox.Show(
+                    "Выберите бренд",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
             }
             else
             {
                 if (IsEdit)
                     service.Commit();
                 else
-                {
                     service.Add(Product);
-                    MessageBox.Show("Продукт успешно добавлен", "Успех",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                Back(sender, e);
             }
         }
 

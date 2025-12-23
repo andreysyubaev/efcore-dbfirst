@@ -14,15 +14,11 @@ namespace efcore_dbfirst.Validators
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (value == null || (value is int intValue && intValue == 0))
-            {
-                return new ValidationResult(false, ErrorMessage);
-            }
+            if (value == null)
+                return new ValidationResult(false, "Поле обязательно для выбора");
 
-            if (value is string stringValue && string.IsNullOrWhiteSpace(stringValue))
-            {
-                return new ValidationResult(false, ErrorMessage);
-            }
+            if (value is int id && id <= 0)
+                return new ValidationResult(false, "Поле обязательно для выбора");
 
             return ValidationResult.ValidResult;
         }

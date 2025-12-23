@@ -40,12 +40,15 @@ namespace efcore_dbfirst.Service
             if (exists)
             {
                 MessageBox.Show("Товар с таким названием уже существует");
-                return;
             }
-
-            _db.Products.Add(product);
-            Commit();
-            Products.Add(product);
+            else
+            {
+                _db.Products.Add(product);
+                Commit();
+                Products.Add(product);
+                MessageBox.Show("Продукт успешно добавлен", "Успех",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         public void Remove(Product product)
