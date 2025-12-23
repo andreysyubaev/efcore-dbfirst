@@ -89,15 +89,23 @@ namespace efcore_dbfirst.Pages
 
         private void AddProduct(object sender, RoutedEventArgs e)
         {
-            if (IsEdit)
-                service.Commit();
+            if (string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Description.Text))
+            {
+                MessageBox.Show("Заполните все поля", "Внимание",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             else
             {
-                service.Add(Product);
-                MessageBox.Show("Продукт успешно добавлен", "Успех",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
+                if (IsEdit)
+                    service.Commit();
+                else
+                {
+                    service.Add(Product);
+                    MessageBox.Show("Продукт успешно добавлен", "Успех",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                Back(sender, e);
             }
-            Back(sender, e);
         }
 
         private void Back(object sender, RoutedEventArgs e)

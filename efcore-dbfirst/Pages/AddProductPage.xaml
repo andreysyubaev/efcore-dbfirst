@@ -17,6 +17,7 @@
         <validator:StockValidator x:Key="stockValidator"/>
         <validator:RatingValidator x:Key="ratingValidator"/>
         <validator:DateValidator x:Key="dateValidator"/>
+        <validator:ComboBoxValidator x:Key="comboBoxValidator"/>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -157,19 +158,29 @@
                     <Label Content="Категория"/>
                     <ComboBox ItemsSource="{Binding Categories}"
                               DisplayMemberPath="Name"
-                              SelectedValuePath="Id"
-                              SelectedValue="{Binding Product.CategoryId,
-                        Mode=TwoWay,
-                        UpdateSourceTrigger=PropertyChanged}"/>
+                              SelectedValuePath="Id">
+                        <ComboBox.SelectedValue>
+                            <Binding Path="Product.CategoryId" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validator:ComboBoxValidator/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.SelectedValue>
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Бренд"/>
                     <ComboBox ItemsSource="{Binding Brands}"
                               DisplayMemberPath="Name"
-                              SelectedValuePath="Id"
-                              SelectedValue="{Binding Product.BrandId,
-                        Mode=TwoWay,
-                        UpdateSourceTrigger=PropertyChanged}"/>
+                              SelectedValuePath="Id">
+                        <ComboBox.SelectedValue>
+                            <Binding Path="Product.BrandId" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validator:ComboBoxValidator/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox.SelectedValue>
+                    </ComboBox>
                 </StackPanel>
             </StackPanel>
             <Grid Grid.Column="1">
