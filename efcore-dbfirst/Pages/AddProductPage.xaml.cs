@@ -89,7 +89,8 @@ namespace efcore_dbfirst.Pages
 
         private void AddProduct(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Description.Text))
+            if (string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Description.Text) || string.IsNullOrEmpty(Price.Text)
+                || string.IsNullOrEmpty(Stock.Text))
             {
                 MessageBox.Show("Заполните все поля", "Внимание",
                     MessageBoxButton.OK, MessageBoxImage.Warning);

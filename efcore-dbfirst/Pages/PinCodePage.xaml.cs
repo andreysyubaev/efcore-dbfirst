@@ -34,13 +34,19 @@ namespace efcore_dbfirst.Pages
         private void PinCode_PasswordChanged(object sender, RoutedEventArgs e)
         {
             PinCode.MaxLength = 4;
-            if (PinCode.Password == pinCode)
-                NavigationService.Navigate(new MainPage(manager));
         }
 
         private void Back(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (PinCode.Password == pinCode)
+                NavigationService.Navigate(new MainPage(manager));
+            else if (PinCode.Password != pinCode)
+                MessageBox.Show("Неверный ПИН-код", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
