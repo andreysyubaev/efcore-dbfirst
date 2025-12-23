@@ -8,7 +8,6 @@
       xmlns:converter="clr-namespace:efcore_dbfirst.Converters"
       xmlns:validator="clr-namespace:efcore_dbfirst.Validators"
       mc:Ignorable="d" 
-      DataContext="{Binding RelativeSource={RelativeSource Self}}"
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="Товары электроники" Loaded="LoadList">
     
@@ -58,14 +57,24 @@
             </StackPanel>
             <Label Content="Фильтрация" FontSize="20" FontWeight="SemiBold" Margin="8"/>
             <StackPanel>
-                <ComboBox x:Name="SortComboBox" SelectionChanged="SortComboBox_SelectionChanged">
-                    <ComboBox.Items>
-                        <ComboBoxItem Tag="categoriesAZ">Категории(А-Я)</ComboBoxItem>
-                        <ComboBoxItem Tag="categoriesZA">Категории(Я-А)</ComboBoxItem>
-                        <ComboBoxItem Tag="brandsAZ">Бренды(А-Я)</ComboBoxItem>
-                        <ComboBoxItem Tag="brandsZA">Бренды(Я-А)</ComboBoxItem>
-                    </ComboBox.Items>
-                </ComboBox>
+                    <StackPanel>
+                        <Label Content="Категория"/>
+                        <ComboBox ItemsSource="{Binding Categories}"
+                                  x:Name="CategoriesComboBox"
+                                  SelectionChanged="CategoriesComboBox_SelectionChanged"
+                                  DisplayMemberPath="Name"
+                                  SelectedValuePath="Id"
+                                  />
+                    </StackPanel>
+                <StackPanel>
+                    <Label Content="Бренд"/>
+                    <ComboBox ItemsSource="{Binding Brands}"
+                              x:Name="BrandsComboBox"
+                              SelectionChanged="BrandsComboBox_SelectionChanged"
+                              DisplayMemberPath="Name"
+                              SelectedValuePath="Id"
+                              />
+                </StackPanel>
             </StackPanel>
             <Label Content="Цена" FontSize="20" FontWeight="SemiBold" Margin="8"/>
             <StackPanel>
