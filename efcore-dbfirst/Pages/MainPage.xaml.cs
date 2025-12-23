@@ -98,7 +98,6 @@ namespace efcore_dbfirst.Pages
 
         private void Reset(object sender, RoutedEventArgs e)
         {
-            // 1. Очистка UI
             searchText.Text = string.Empty;
             priceFromText.Text = string.Empty;
             priceToText.Text = string.Empty;
@@ -107,15 +106,12 @@ namespace efcore_dbfirst.Pages
             StockComboBox.SelectedIndex = -1;
             SortComboBox.SelectedIndex = -1;
 
-            // 2. Сброс значений фильтра
             searchQuery = null;
             filterPriceFrom = null;
             filterPriceTo = null;
 
-            // 3. Очистка сортировки
             productsView.SortDescriptions.Clear();
 
-            // 4. Обновление отображения
             productsView.Refresh();
         }
 

@@ -107,11 +107,10 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0">
                                 <Run Text="{Binding Name}" FontWeight="Bold"/>
-                                <Run Text="{Binding Brand.Name}" FontWeight="Light"/>
                             </TextBlock>
                             <TextBlock Grid.Row="0" Grid.Column="1">
                                 <Run Text="Цена: "/>
-                                <Run Text="{Binding Price}"/>
+                                <Run Text="{Binding Price, StringFormat={}{0:N2}}"/>
                             </TextBlock>
 
                             <TextBlock Grid.Row="1" Grid.Column="0">
