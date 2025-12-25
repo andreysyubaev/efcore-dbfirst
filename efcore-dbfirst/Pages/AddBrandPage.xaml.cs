@@ -47,6 +47,15 @@ namespace efcore_dbfirst.Pages
             {
                 MessageBox.Show("Введите название бренда");
             }
+            else if (Validation.GetHasError(Name))
+            {
+                MessageBox.Show(
+                    "Исправьте ошибки ввода перед сохранением",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
             else
             {
                 if (IsEdit)

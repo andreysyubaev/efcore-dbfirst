@@ -111,12 +111,24 @@ namespace efcore_dbfirst.Pages
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning);
             }
+            else if (Validation.GetHasError(Name) || Validation.GetHasError(Description) || Validation.GetHasError(Price)
+                 || Validation.GetHasError(Stock) || Validation.GetHasError(Rating) || Validation.GetHasError(CreatedAt))
+            {
+                MessageBox.Show(
+                    "Исправьте ошибки ввода перед сохранением",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+            }
             else
             {
                 if (IsEdit)
                     service.Commit();
                 else
+                {
                     service.Add(Product);
+                    Back(sender, e);
+                }
             }
         }
 

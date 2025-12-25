@@ -120,7 +120,8 @@
                     <TextBox x:Name="Rating" materialDesign:HintAssist.Hint="Введите рейтинг" Validation.ErrorTemplate="{x:Null}">
                         <TextBox.Text>
                             <Binding Path="Product.Rating"
-                                     UpdateSourceTrigger="PropertyChanged">
+                                     UpdateSourceTrigger="PropertyChanged"
+                                     StringFormat="F1">
                                 <Binding.ValidationRules>
                                     <validator:RatingValidator/>
                                 </Binding.ValidationRules>

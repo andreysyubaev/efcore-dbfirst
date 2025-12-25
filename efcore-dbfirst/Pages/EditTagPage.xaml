@@ -5,10 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:efcore_dbfirst.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:validator="clr-namespace:efcore_dbfirst.Validators"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Изменение тега">
-
+    <Page.Resources>
+        <validator:BrandCategoryTagValidator x:Key="brandCategoryTagValidator"/>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -23,7 +26,23 @@
                    Margin="16"/>
             <StackPanel>
                 <Label Content="Название тега"/>
-                <TextBox Text="{Binding Name}" materialDesign:HintAssist.Hint="Введите название тега"/>
+                <TextBox x:Name="Name" Validation.ErrorTemplate="{x:Null}" materialDesign:HintAssist.Hint="Введите название тега">
+                    <TextBox.Text>
+                        <Binding Path="Name"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <validator:BrandCategoryTagValidator/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <ItemsControl ItemsSource="{Binding ElementName=Name, Path=(Validation.Errors)}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding ErrorContent}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
             <Button Click="Edit" Content="Изменить" Margin="0,8"/>
             <Button Click="Delete" Content="Удалить" Margin="0,8"/>

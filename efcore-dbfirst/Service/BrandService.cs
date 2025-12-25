@@ -66,7 +66,7 @@ namespace efcore_dbfirst.Service
 
             if (hasProducts)
             {
-                MessageBox.Show("Нельзя удалить бренд, в которой есть товары");
+                MessageBox.Show("Нельзя удалить бренд, чьи товары есть в списке");
             }
             else
             {

@@ -18,8 +18,14 @@
             <PasswordBox x:Name="PinCode" PasswordChanged="PinCode_PasswordChanged"
                          VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                          FontSize="32" Margin="16"/>
-            <Button Content="Войти" Click="Button_Click"/>
         </StackPanel>
-        <Button Grid.Row="1" Click="Back" Content="Назад"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Margin="0,0,0,4" Content="Войти" Click="Button_Click"/>
+            <Button Grid.Row="1" Click="Back" Content="Назад"/>
+        </Grid>
     </Grid>
 </Page>

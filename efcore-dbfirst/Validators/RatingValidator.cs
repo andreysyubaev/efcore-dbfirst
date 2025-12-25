@@ -12,7 +12,7 @@ namespace efcore_dbfirst.Validators
     public class RatingValidator : ValidationRule
     {
         private static readonly Regex RatingRegex =
-            new(@"^(?:[0-4]\.[0-9]|5\.0)$");
+            new(@"^(?:0|[1-4])\.[0-9]|5\.0$");
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
@@ -25,13 +25,13 @@ namespace efcore_dbfirst.Validators
                 return new ValidationResult(false, "Используйте точку, а не запятую");
 
             if (!RatingRegex.IsMatch(input))
-                return new ValidationResult(false, "Формат: от 0.1 до 5.0 (например 4.5)");
+                return new ValidationResult(false, "Формат: от 0.0 до 5.0 (например 4.5)");
 
             if (!decimal.TryParse(input, NumberStyles.Number, CultureInfo.InvariantCulture, out var rating))
                 return new ValidationResult(false, "Некорректное число");
 
-            if (rating < 0.1m || rating > 5.0m)
-                return new ValidationResult(false, "Рейтинг от 0.1 до 5.0");
+            if (rating < 0.0m || rating > 5.0m)
+                return new ValidationResult(false, "Рейтинг от 0.0 до 5.0");
 
             return ValidationResult.ValidResult;
         }

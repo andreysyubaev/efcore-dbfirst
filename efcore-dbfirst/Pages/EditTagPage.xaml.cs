@@ -43,11 +43,19 @@ namespace efcore_dbfirst.Pages
 
         private void Edit(object sender, RoutedEventArgs e)
         {
-            if (IsEdit)
-                service.Commit();
+            if (Validation.GetHasError(Name))
+            {
+                MessageBox.Show("Заполните все поля", "Внимание",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             else
-                service.Add(_tag);
-            Back(sender, e);
+            {
+                if (IsEdit)
+                    service.Commit();
+                else
+                    service.Add(_tag);
+                Back(sender, e);
+            }
         }
 
         private void Delete(object sender, RoutedEventArgs e)

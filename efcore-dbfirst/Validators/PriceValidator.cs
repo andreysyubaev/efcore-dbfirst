@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -14,17 +15,24 @@ namespace efcore_dbfirst.Validators
         {
             var input = (value ?? "").ToString().Trim();
 
-            if (input == string.Empty)
-                return new ValidationResult(false, "Ввод поля обязателен");
+            if (string.IsNullOrEmpty(input))
+                return new ValidationResult(false, "Введите цену");
 
-            foreach (char c in input)
-            {
-                if (!char.IsDigit(c) && c != '.' && c != ',')
-                    return new ValidationResult(false, "Введите число!");
-            }
+            if (input.Contains(','))
+                return new ValidationResult(false, "Используйте точку, а не запятую");
 
-            if (Convert.ToDecimal(input) < 0)
-                return new ValidationResult(false, "Цена не может быть отрицательна");
+            if (!Regex.IsMatch(input, @"^\d+(\.\d{1,4})?$"))
+                return new ValidationResult(false, "Некорректный формат цены");
+
+            if (!decimal.TryParse(
+                    input,
+                    NumberStyles.Number,
+                    CultureInfo.InvariantCulture,
+                    out var price))
+                return new ValidationResult(false, "Некорректное число");
+
+            if (price < 0)
+                return new ValidationResult(false, "Цена не может быть отрицательной");
 
             return ValidationResult.ValidResult;
         }
