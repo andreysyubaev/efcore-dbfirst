@@ -29,7 +29,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
-            <Label Content="Поиск" FontWeight="SemiBold" Margin="8"/>
+            <Label Content="Поиск" FontSize="20" FontWeight="SemiBold" Margin="8"/>
             <TextBox Text="{Binding searchQuery, UpdateSourceTrigger=PropertyChanged}" x:Name="searchText"
                      TextChanged="Search_TextChanged"
                      materialDesign:HintAssist.Hint="Введите текст для поиска"
